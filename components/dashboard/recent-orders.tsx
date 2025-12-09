@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { formatCurrency, formatDate } from "@/lib/db"
+import { formatCurrency, formatDate } from "@/lib/utils"
 import type { OrderStatus, SalesOrder } from "@/lib/types"
 
 const statusColors: Record<OrderStatus, string> = {

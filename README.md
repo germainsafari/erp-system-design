@@ -32,7 +32,7 @@ npm install
 Create a `.env` file:
 
 ```env
-DATABASE_URL="postgresql://user:password@host:port/database?sslmode=require"
+DATABASE_URL=XXXXXXXXXXXXXXX
 ```
 
 ### 3. Initialize Database

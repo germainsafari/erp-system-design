@@ -9,7 +9,7 @@ import { RecentOrders } from "@/components/dashboard/recent-orders"
 import { LowStockAlert } from "@/components/dashboard/low-stock-alert"
 import { RevenueChart } from "@/components/dashboard/revenue-chart"
 import { DollarSign, ShoppingCart, Package, Users, AlertTriangle, Clock } from "lucide-react"
-import { formatCurrency } from "@/lib/db"
+import { formatCurrency } from "@/lib/utils"
 
 export default function DashboardPage() {
   const { user, loading } = useAuth()
