@@ -4,6 +4,7 @@ A Modern Enterprise Resource Planning System for Retail Businesses
 
 ## Features
 
+### Core Modules
 - 📊 **Unified Dashboard** - Real-time business insights and KPIs
 - 📦 **Inventory Management** - Track products, stock levels, and low stock alerts
 - 🛒 **Sales Orders** - Complete order lifecycle management
@@ -11,6 +12,10 @@ A Modern Enterprise Resource Planning System for Retail Businesses
 - 👔 **HR Module** - Employee management and tracking
 - 💰 **Accounting** - Financial transactions and reporting
 - 🏢 **Supplier Management** - Track suppliers and purchase orders
+
+### AI & Intelligence
+- 🤖 **AI Copilot** - Conversational assistant for ERP operations (already implemented)
+- 📈 **Predictive Analytics** - See [Differentiating Features](./docs/DIFFERENTIATING_FEATURES.md) for planned AI capabilities
 
 ## Tech Stack
 
@@ -123,6 +128,8 @@ Required:
 - [Setup Guide](./SETUP.md) - Detailed setup instructions
 - [API Documentation](./docs/API_DOCUMENTATION.md) - API endpoints
 - [Demo Guide](./docs/DEMO_GUIDE.md) - Demo presentation guide
+- [Differentiating Features](./docs/DIFFERENTIATING_FEATURES.md) - 25+ innovative features to stand out
+- [Top 5 Differentiators](./docs/TOP_5_DIFFERENTIATORS.md) - Highest-impact features to implement first
 
 ## License
 

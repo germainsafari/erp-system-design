@@ -8,6 +8,7 @@ import { StatsCard } from "@/components/dashboard/stats-card"
 import { RecentOrders } from "@/components/dashboard/recent-orders"
 import { LowStockAlert } from "@/components/dashboard/low-stock-alert"
 import { RevenueChart } from "@/components/dashboard/revenue-chart"
+import { CashFlowForecast } from "@/components/dashboard/cash-flow-forecast"
 import { DollarSign, ShoppingCart, Package, Users, AlertTriangle, Clock } from "lucide-react"
 import { formatCurrency } from "@/lib/utils"
 
@@ -84,6 +85,11 @@ export default function DashboardPage() {
         <StatsCard title="Customers" value={stats.totalCustomers} icon={Users} iconColor="text-chart-5" />
         <StatsCard title="Low Stock" value={stats.lowStockCount} icon={AlertTriangle} iconColor="text-warning" />
         <StatsCard title="Pending Orders" value={stats.pendingOrders} icon={Clock} iconColor="text-chart-4" />
+      </div>
+
+      {/* Cash Flow Forecast */}
+      <div className="mb-6">
+        <CashFlowForecast />
       </div>
 
       {/* Charts and Tables */}

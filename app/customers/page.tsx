@@ -10,8 +10,10 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { formatDate } from "@/lib/utils"
 import type { Customer } from "@/lib/types"
-import { Plus, Search, Users, Mail, Phone } from "lucide-react"
+import { Plus, Search, Users, Mail, Phone, Heart } from "lucide-react"
 import { toast } from "sonner"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { CustomerHealthDashboard } from "@/components/customers/customer-health-dashboard"
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([])
@@ -146,8 +148,23 @@ export default function CustomersPage() {
 
   return (
     <AppLayout title="Customers" description="Manage your customer database">
-      {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+      <Tabs defaultValue="list" className="space-y-4">
+        <div className="flex items-center justify-between">
+          <TabsList>
+            <TabsTrigger value="list">
+              <Users className="w-4 h-4 mr-2" />
+              Customer List
+            </TabsTrigger>
+            <TabsTrigger value="health">
+              <Heart className="w-4 h-4 mr-2" />
+              Health Dashboard
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        <TabsContent value="list" className="space-y-4">
+          {/* Toolbar */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
@@ -236,6 +253,12 @@ export default function CustomersPage() {
 
       {/* Data Table */}
       <DataTable data={filteredCustomers} columns={columns} keyField="id" total={filteredCustomers.length} />
+        </TabsContent>
+
+        <TabsContent value="health" className="space-y-4">
+          <CustomerHealthDashboard />
+        </TabsContent>
+      </Tabs>
     </AppLayout>
   )
 }

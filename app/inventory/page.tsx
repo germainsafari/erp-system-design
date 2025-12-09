@@ -13,6 +13,8 @@ import { formatCurrency } from "@/lib/utils"
 import type { Product } from "@/lib/types"
 import { Plus, Search, Package } from "lucide-react"
 import { toast } from "sonner"
+import { ReorderSuggestions } from "@/components/inventory/reorder-suggestions"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function InventoryPage() {
   const [products, setProducts] = useState<Product[]>([])
@@ -292,6 +294,19 @@ export default function InventoryPage() {
         </Dialog>
       </div>
 
+      <Tabs defaultValue="products" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="products">
+            <Package className="w-4 h-4 mr-2" />
+            Products
+          </TabsTrigger>
+          <TabsTrigger value="reorder">
+            <Package className="w-4 h-4 mr-2" />
+            Smart Reordering
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="products" className="space-y-4">
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="p-4 rounded-lg border border-border bg-card">
@@ -344,6 +359,12 @@ export default function InventoryPage() {
 
       {/* Data Table */}
       <DataTable data={filteredProducts} columns={columns} keyField="id" total={filteredProducts.length} />
+        </TabsContent>
+
+        <TabsContent value="reorder" className="space-y-4">
+          <ReorderSuggestions />
+        </TabsContent>
+      </Tabs>
     </AppLayout>
   )
 }
