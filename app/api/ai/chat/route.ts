@@ -4,6 +4,10 @@ import { buildSystemPrompt } from "@/lib/ai/prompts"
 import { buildOperationalContext } from "@/lib/ai/retrieval"
 import type { Role } from "@/lib/types"
 
+// Force dynamic rendering - this route should never be statically generated
+export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
+
 type ChatRole = "user" | "assistant" | "system"
 interface ChatMessage {
   role: ChatRole
@@ -34,6 +38,14 @@ function sanitizeMessages(raw?: ChatMessage[]): ChatMessage[] {
 
 export async function POST(request: Request) {
   try {
+    // Check for API key during runtime (not build time)
+    if (!process.env.OPENAI_API_KEY) {
+      return NextResponse.json(
+        { success: false, error: "OpenAI API key is not configured. Please set OPENAI_API_KEY in your environment." },
+        { status: 500 }
+      )
+    }
+
     const body = (await request.json()) as ChatRequestBody
     const messages = sanitizeMessages(body.messages)
 
@@ -76,7 +88,8 @@ export async function POST(request: Request) {
     })
   } catch (error) {
     console.error("AI chat error:", error)
-    return NextResponse.json({ success: false, error: "AI chat failed" }, { status: 500 })
+    const errorMessage = error instanceof Error ? error.message : "AI chat failed"
+    return NextResponse.json({ success: false, error: errorMessage }, { status: 500 })
   }
 }
 
