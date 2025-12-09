@@ -2,6 +2,9 @@ import { NextResponse } from "next/server"
 import { prisma, generateId, getProductCurrentStock } from "@/lib/db"
 import { adjustInventorySchema } from "@/lib/validators"
 
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()

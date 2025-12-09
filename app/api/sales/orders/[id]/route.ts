@@ -2,6 +2,9 @@ import { NextResponse } from "next/server"
 import { prisma, generateId, getProductCurrentStock } from "@/lib/db"
 import { updateSalesOrderStatusSchema } from "@/lib/validators"
 
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
