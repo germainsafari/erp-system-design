@@ -3,6 +3,10 @@ import { prisma } from "@/lib/db"
 import { loginSchema } from "@/lib/validators"
 import bcrypt from "bcryptjs"
 
+// Force Node runtime and disable static optimization for this API route
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
