@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from 'next-intl'
 import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
@@ -18,21 +19,23 @@ import {
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Inventory", href: "/inventory", icon: Package },
-  { name: "Sales", href: "/sales", icon: ShoppingCart },
-  { name: "Customers", href: "/customers", icon: Users },
-  { name: "Suppliers", href: "/suppliers", icon: Truck },
-  { name: "HR", href: "/hr", icon: Users },
-  { name: "Accounting", href: "/accounting", icon: DollarSign },
-]
-
-const bottomNavigation = [{ name: "Settings", href: "/settings", icon: Settings }]
-
 export function Sidebar() {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
+  const t = useTranslations('navigation')
+  const tCommon = useTranslations('common')
+  
+  const navigation = [
+    { name: t('dashboard'), href: "/", icon: LayoutDashboard },
+    { name: t('inventory'), href: "/inventory", icon: Package },
+    { name: t('sales'), href: "/sales", icon: ShoppingCart },
+    { name: t('customers'), href: "/customers", icon: Users },
+    { name: t('suppliers'), href: "/suppliers", icon: Truck },
+    { name: t('hr'), href: "/hr", icon: Users },
+    { name: t('accounting'), href: "/accounting", icon: DollarSign },
+  ]
+
+  const bottomNavigation = [{ name: t('settings'), href: "/settings", icon: Settings }]
 
   return (
     <aside
@@ -96,7 +99,7 @@ export function Sidebar() {
 
         <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors w-full">
           <LogOut className="w-5 h-5 flex-shrink-0" />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span>{tCommon('logout')}</span>}
         </button>
       </div>
 

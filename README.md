@@ -17,12 +17,20 @@ A Modern Enterprise Resource Planning System for Retail Businesses
 - 🤖 **AI Copilot** - Conversational assistant for ERP operations (already implemented)
 - 📈 **Predictive Analytics** - See [Differentiating Features](./docs/DIFFERENTIATING_FEATURES.md) for planned AI capabilities
 
+### Internationalization
+- 🌍 **Multi-Language Support** - Full i18n with English, French, and Kinyarwanda
+  - Easy language switching via header dropdown
+  - SEO-friendly URL structure
+  - Comprehensive translations across all modules
+  - See [I18N Quick Start](./docs/I18N_QUICK_START.md) for details
+
 ## Tech Stack
 
 - **Frontend**: Next.js 14+ with App Router, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
 - **Database**: PostgreSQL with Prisma ORM
 - **UI Components**: Radix UI, shadcn/ui
+- **Internationalization**: next-intl (EN, FR, RW support)
 
 ## Quick Start
 
@@ -130,6 +138,8 @@ Required:
 - [Demo Guide](./docs/DEMO_GUIDE.md) - Demo presentation guide
 - [Differentiating Features](./docs/DIFFERENTIATING_FEATURES.md) - 25+ innovative features to stand out
 - [Top 5 Differentiators](./docs/TOP_5_DIFFERENTIATORS.md) - Highest-impact features to implement first
+- [Multi-Language Guide](./docs/INTERNATIONALIZATION.md) - Complete i18n documentation
+- [I18N Quick Start](./docs/I18N_QUICK_START.md) - Quick start for using translations
 
 ## License
 

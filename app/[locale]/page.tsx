@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "@/lib/auth"
 import { useRouter } from "next/navigation"
+import { useTranslations } from 'next-intl'
 import { AppLayout } from "@/components/layout/app-layout"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { RecentOrders } from "@/components/dashboard/recent-orders"
@@ -15,6 +16,9 @@ import { formatCurrency } from "@/lib/utils"
 export default function DashboardPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const t = useTranslations('dashboard')
+  const tCommon = useTranslations('common')
+  
   const [stats, setStats] = useState({
     totalRevenue: 0,
     totalOrders: 0,
@@ -52,7 +56,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+        <p>{tCommon('loading')}</p>
       </div>
     )
   }
@@ -62,29 +66,29 @@ export default function DashboardPage() {
   }
 
   return (
-    <AppLayout title="Dashboard" description="Welcome back! Here's an overview of your business.">
+    <AppLayout title={t('title')} description={t('description')}>
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 mb-6">
         <StatsCard
-          title="Total Revenue"
+          title={t('totalRevenue')}
           value={formatCurrency(stats.totalRevenue)}
           change={stats.revenueChange}
-          changeLabel="vs last month"
+          changeLabel={t('vsLastMonth')}
           icon={DollarSign}
           iconColor="text-success"
         />
         <StatsCard
-          title="Total Orders"
+          title={t('totalOrders')}
           value={stats.totalOrders}
           change={stats.ordersChange}
-          changeLabel="vs last month"
+          changeLabel={t('vsLastMonth')}
           icon={ShoppingCart}
           iconColor="text-primary"
         />
-        <StatsCard title="Products" value={stats.totalProducts} icon={Package} iconColor="text-chart-3" />
-        <StatsCard title="Customers" value={stats.totalCustomers} icon={Users} iconColor="text-chart-5" />
-        <StatsCard title="Low Stock" value={stats.lowStockCount} icon={AlertTriangle} iconColor="text-warning" />
-        <StatsCard title="Pending Orders" value={stats.pendingOrders} icon={Clock} iconColor="text-chart-4" />
+        <StatsCard title={t('products')} value={stats.totalProducts} icon={Package} iconColor="text-chart-3" />
+        <StatsCard title={t('customers')} value={stats.totalCustomers} icon={Users} iconColor="text-chart-5" />
+        <StatsCard title={t('lowStock')} value={stats.lowStockCount} icon={AlertTriangle} iconColor="text-warning" />
+        <StatsCard title={t('pendingOrders')} value={stats.pendingOrders} icon={Clock} iconColor="text-chart-4" />
       </div>
 
       {/* Cash Flow Forecast */}
@@ -109,3 +113,5 @@ export default function DashboardPage() {
     </AppLayout>
   )
 }
+
+

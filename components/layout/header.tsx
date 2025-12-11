@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from "@/lib/auth"
 import { useRouter } from "next/navigation"
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 interface HeaderProps {
   title: string
@@ -22,6 +24,7 @@ interface HeaderProps {
 export function Header({ title, description }: HeaderProps) {
   const { user, logout } = useAuth()
   const router = useRouter()
+  const t = useTranslations('common')
 
   return (
     <header className="flex items-center justify-between h-16 px-6 border-b border-border bg-background">
@@ -31,10 +34,13 @@ export function Header({ title, description }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-4">
+        {/* Language Switcher */}
+        <LanguageSwitcher />
+
         {/* Search */}
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input type="search" placeholder="Search..." className="w-64 pl-9 h-9" />
+          <Input type="search" placeholder={t('search')} className="w-64 pl-9 h-9" />
         </div>
 
         {/* Notifications */}
@@ -61,11 +67,11 @@ export function Header({ title, description }: HeaderProps) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => router.push("/settings")}>Settings</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push("/settings")}>{t('settings')}</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-destructive" onClick={logout}>
               <LogOut className="w-4 h-4 mr-2" />
-              Logout
+              {t('logout')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
