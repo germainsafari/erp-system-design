@@ -1,5 +1,6 @@
 "use client"
 
+import type React from "react"
 import { Bell, Search, User, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,9 +20,10 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 interface HeaderProps {
   title: string
   description?: string
+  action?: React.ReactNode
 }
 
-export function Header({ title, description }: HeaderProps) {
+export function Header({ title, description, action }: HeaderProps) {
   const { user, logout } = useAuth()
   const router = useRouter()
   const t = useTranslations('common')
@@ -34,6 +36,8 @@ export function Header({ title, description }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-4">
+        {action}
+
         {/* Language Switcher */}
         <LanguageSwitcher />
 
