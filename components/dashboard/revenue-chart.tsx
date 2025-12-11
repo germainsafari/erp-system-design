@@ -22,10 +22,19 @@ export function RevenueChart() {
         const result = await response.json()
         
         if (result.success) {
-          const transactions = result.data
+          const transactions: Array<{
+            date: string
+            amount: number
+            type: string
+          }> = Array.isArray(result.data) ? result.data : []
           
           // Group by month for last 6 months
-          const months = []
+          const months: Array<{
+            month: string
+            date: Date
+            revenue: number
+            expenses: number
+          }> = []
           const now = new Date()
           for (let i = 5; i >= 0; i--) {
             const date = new Date(now.getFullYear(), now.getMonth() - i, 1)
@@ -34,7 +43,7 @@ export function RevenueChart() {
           }
 
           // Calculate revenue and expenses per month
-          transactions.forEach((txn: any) => {
+          transactions.forEach((txn) => {
             const txnDate = new Date(txn.date)
             const monthIndex = months.findIndex(
               (m) => m.date.getMonth() === txnDate.getMonth() && m.date.getFullYear() === txnDate.getFullYear()

@@ -25,15 +25,26 @@ interface ChatRequestBody {
   }
 }
 
-function sanitizeMessages(raw?: ChatMessage[]): ChatMessage[] {
+function sanitizeMessages(raw?: unknown): ChatMessage[] {
   if (!Array.isArray(raw)) return []
 
   return raw
-    .map((msg) => ({
-      role: msg?.role === "assistant" ? "assistant" : msg?.role === "system" ? "system" : "user",
-      content: typeof msg?.content === "string" ? msg.content.slice(0, 4000) : "",
-    }))
-    .filter((msg) => msg.content.trim().length > 0)
+    .map((msg) => {
+      const role: ChatRole =
+        msg && typeof msg === "object" && "role" in msg && (msg as { role?: unknown }).role === "assistant"
+          ? "assistant"
+          : msg && typeof msg === "object" && "role" in msg && (msg as { role?: unknown }).role === "system"
+            ? "system"
+            : "user"
+
+      const content =
+        msg && typeof msg === "object" && "content" in msg && typeof (msg as { content?: unknown }).content === "string"
+          ? (msg as { content: string }).content.slice(0, 4000)
+          : ""
+
+      return { role, content }
+    })
+    .filter((msg): msg is ChatMessage => msg.content.trim().length > 0)
 }
 
 export async function POST(request: Request) {
