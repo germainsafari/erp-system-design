@@ -33,6 +33,7 @@ export function CopilotPanel() {
   const [draft, setDraft] = useState("")
   const [isThinking, setIsThinking] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPrompts, setShowPrompts] = useState(true)
   const viewportRef = useRef<HTMLDivElement>(null)
 
   const roleLabel = useMemo(() => user?.role ?? "Unknown role", [user?.role])
@@ -41,9 +42,21 @@ export function CopilotPanel() {
     viewportRef.current?.scrollTo({ top: viewportRef.current.scrollHeight, behavior: "smooth" })
   }, [messages])
 
+  // Reset prompts when sheet closes
+  useEffect(() => {
+    if (!open) {
+      setShowPrompts(true)
+    }
+  }, [open])
+
   const sendMessage = async (prompt?: string) => {
     const content = prompt ?? draft.trim()
     if (!content) return
+
+    // Hide prompts when user sends a message
+    if (prompt) {
+      setShowPrompts(false)
+    }
 
     const nextMessages: ChatMessage[] = [...messages, { role: "user", content }]
     setMessages(nextMessages)
@@ -94,9 +107,9 @@ export function CopilotPanel() {
 
       <SheetContent
         side="right"
-        className="fixed inset-auto right-4 bottom-4 sm:right-6 sm:bottom-6 w-[94vw] sm:w-[400px] sm:max-w-[400px] h-[70vh] max-h-[80vh] sm:h-[70vh] sm:max-h-[78vh] rounded-2xl border shadow-2xl p-0 flex flex-col overflow-hidden bg-background"
+        className="fixed inset-auto right-4 bottom-4 sm:right-6 sm:bottom-6 w-[94vw] sm:w-[400px] sm:max-w-[400px] h-[85vh] max-h-[90vh] sm:h-[85vh] sm:max-h-[90vh] rounded-2xl border shadow-2xl p-0 flex flex-col overflow-hidden bg-background"
       >
-        <SheetHeader className="p-4 pb-2">
+        <SheetHeader className="p-4 pb-2 flex-shrink-0">
           <SheetTitle className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-primary" />
             Copilot
@@ -105,21 +118,23 @@ export function CopilotPanel() {
           <SheetDescription>
             Ask about orders, inventory, suppliers, or finances. Responses include live stats context.
           </SheetDescription>
-          <div className="flex flex-wrap gap-2 pt-2">
-            {starterPrompts.map((prompt) => (
-              <Button key={prompt} variant="secondary" size="sm" onClick={() => sendMessage(prompt)}>
-                {prompt}
-              </Button>
-            ))}
-          </div>
+          {showPrompts && (
+            <div className="flex flex-wrap gap-2 pt-2 transition-opacity duration-200">
+              {starterPrompts.map((prompt) => (
+                <Button key={prompt} variant="secondary" size="sm" onClick={() => sendMessage(prompt)}>
+                  {prompt}
+                </Button>
+              ))}
+            </div>
+          )}
         </SheetHeader>
 
-        <Separator />
+        {showPrompts && <Separator className="flex-shrink-0" />}
 
-        <div className="flex h-full flex-col gap-4 p-4 overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col gap-4 p-4 overflow-hidden">
           <div
             ref={viewportRef}
-            className="flex-1 min-h-0 overflow-y-auto rounded-md border border-border bg-muted/30 p-3"
+            className="flex-1 min-h-0 overflow-y-auto rounded-md border border-border bg-muted/30 p-3 sm:p-4"
             style={{ scrollbarWidth: "thin" }}
           >
             <div className="flex flex-col gap-3">
@@ -156,12 +171,18 @@ export function CopilotPanel() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 flex-shrink-0 mt-auto">
             <Textarea
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               placeholder="Ask anything about your ERP data..."
               className="min-h-[80px] resize-none"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                  e.preventDefault()
+                  sendMessage()
+                }
+              }}
             />
             <div className="flex justify-end">
               <Button onClick={() => sendMessage()} disabled={isThinking || !draft.trim()} className="gap-2">
