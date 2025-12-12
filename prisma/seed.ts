@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 // Password hash for 'password123'
 const PASSWORD_HASH = bcrypt.hashSync("password123", 10)
 
-async function main() {
+export async function seedDatabase() {
   console.log("🌱 Starting database seed...")
 
   // Clear existing data (optional - comment out if you want to keep existing data)
@@ -867,15 +867,32 @@ async function main() {
   console.log(`   - ${suppliers.length} suppliers created`)
   console.log(`   - ${customers.length} customers created`)
   console.log(`   - ${orders.length} sales orders created`)
+
+  return {
+    users: users.length,
+    products: products.length,
+    suppliers: suppliers.length,
+    customers: customers.length,
+    orders: orders.length,
+  }
 }
 
-main()
-  .catch((e) => {
-    console.error("❌ Error seeding database:", e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+// Allow running as a script (when executed directly via tsx)
+// Check if this file is being run directly
+const isMainModule = 
+  typeof require !== 'undefined' && require.main === module ||
+  process.argv[1]?.endsWith('seed.ts') ||
+  process.argv[1]?.includes('seed.ts')
+
+if (isMainModule) {
+  seedDatabase()
+    .catch((e) => {
+      console.error("❌ Error seeding database:", e)
+      process.exit(1)
+    })
+    .finally(async () => {
+      await prisma.$disconnect()
+    })
+}
 
 

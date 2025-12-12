@@ -9,13 +9,36 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
+// Configure Prisma Client with connection settings optimized for serverless
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL,
+      },
+    },
+    // Connection pool settings for serverless environments
+    // Note: These are handled by the connection string for Neon pooler
   })
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma
+
+// Test database connection on startup (development only)
+if (process.env.NODE_ENV === "development" && typeof window === "undefined") {
+  prisma.$connect().catch((error) => {
+    console.error("❌ Failed to connect to database:", error.message)
+    console.error("💡 Make sure:")
+    console.error("   1. DATABASE_URL is set in .env file")
+    console.error("   2. Your Neon database is active (not paused)")
+    console.error("   3. The connection string is correct")
+    if (error.message.includes("Can't reach database server")) {
+      console.error("   4. Wake up your Neon database by visiting the Neon dashboard")
+      console.error("   5. Check if you're using the correct pooler connection string")
+    }
+  })
+}
 
 // ============================================
 // UTILITY FUNCTIONS

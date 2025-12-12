@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useAuth } from "@/lib/auth"
 
 export default function LoginPage() {
   const router = useRouter()
   const t = useTranslations('auth')
+  const { login } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -22,21 +24,12 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      })
-
-      const data = await response.json()
-
-      if (data.success) {
+      const success = await login(email, password)
+      if (success) {
         router.push("/")
         router.refresh()
       } else {
-        setError(data.message || "Login failed")
+        setError("Invalid email or password")
       }
     } catch (err) {
       setError("An error occurred. Please try again.")
@@ -58,7 +51,9 @@ export default function LoginPage() {
               <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
+                autoComplete="email"
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -69,7 +64,9 @@ export default function LoginPage() {
               <Label htmlFor="password">{t('password')}</Label>
               <Input
                 id="password"
+                name="password"
                 type="password"
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -85,6 +82,7 @@ export default function LoginPage() {
     </div>
   )
 }
+
 
 
 
