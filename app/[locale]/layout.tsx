@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { AuthProvider } from "@/lib/auth"
 import { Toaster } from "@/components/ui/sonner"
 import { notFound } from 'next/navigation'
-import { locales } from '@/i18n'
+import { locales, defaultLocale } from '@/i18n/config'
 import "../globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -55,8 +55,15 @@ export default async function LocaleLayout({
   }
 
   // Providing all messages to the client side
-  // Pass the locale to getMessages
-  const messages = await getMessages({ locale })
+  // Pass the locale to getMessages with error handling
+  let messages
+  try {
+    messages = await getMessages({ locale })
+  } catch (error) {
+    console.error(`Error loading messages for locale ${locale}:`, error)
+    // Fallback to default locale messages
+    messages = await getMessages({ locale: defaultLocale })
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>

@@ -15,10 +15,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     // Check for stored user session
     if (typeof window !== 'undefined') {
       const storedUser = localStorage.getItem("user")
@@ -44,7 +42,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const result = await response.json()
       if (result.success && result.data) {
         setUser(result.data)
-        localStorage.setItem("user", JSON.stringify(result.data))
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("user", JSON.stringify(result.data))
+        }
         return true
       }
       return false
@@ -62,11 +62,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return <>{children}</>
-  }
-
+  // Always provide the context, even during SSR
+  // The values will be updated after mount
   return <AuthContext.Provider value={{ user, login, logout, loading }}>{children}</AuthContext.Provider>
 }
 
