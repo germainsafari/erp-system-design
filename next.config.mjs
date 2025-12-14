@@ -16,7 +16,8 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel-insights.com",
-              "style-src 'self' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline' https://www.gstatic.com",
+              "style-src-elem 'self' 'unsafe-inline' https://www.gstatic.com",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
               "connect-src 'self' https://*.vercel-insights.com https://vitals.vercel-insights.com",

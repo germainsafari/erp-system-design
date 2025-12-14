@@ -59,8 +59,8 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale })
 
   return (
-    <html lang={locale}>
-      <body className={`font-sans antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`font-sans antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             {children}

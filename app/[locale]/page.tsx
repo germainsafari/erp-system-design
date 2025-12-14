@@ -53,16 +53,12 @@ export default function DashboardPage() {
     }
   }, [user])
 
-  if (loading) {
+  if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p>{tCommon('loading')}</p>
       </div>
     )
-  }
-
-  if (!user) {
-    return null
   }
 
   return (

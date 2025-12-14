@@ -182,7 +182,7 @@ export function CashFlowForecast() {
         )}
 
         {/* Forecast Chart */}
-        <div className="h-64 w-full">
+        <div className="h-64 w-full min-w-0">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={weeklyData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <defs>
