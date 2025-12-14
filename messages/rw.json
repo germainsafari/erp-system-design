@@ -22,7 +22,10 @@
     "back": "Gusubira inyuma",
     "next": "Ibikurikira",
     "previous": "Ibabanjirije",
-    "submit": "Kohereza"
+    "submit": "Kohereza",
+    "success": "Byagenze neza",
+    "error": "Ikosa",
+    "somethingWentWrong": "Hariho ikibazo"
   },
   "navigation": {
     "dashboard": "Ikibaho",
@@ -63,7 +66,16 @@
     "processing": "Bigenda",
     "completed": "Byarangiye",
     "cancelled": "Byahagaritswe",
-    "viewDetails": "Reba ibisobanuro"
+    "viewDetails": "Reba ibisobanuro",
+    "items": "Ibicuruzwa",
+    "addItem": "Kongeramo igicuruzwa",
+    "selectCustomer": "Hitamo umukiriya",
+    "product": "Igicuruzwa",
+    "selectProduct": "Hitamo igicuruzwa",
+    "quantity": "Umubare",
+    "unitPrice": "Igiciro cy'umubare",
+    "notes": "Inyandiko",
+    "orderCreated": "Icyifuzo cyakozwe neza"
   },
   "inventory": {
     "title": "Ibicuruzwa",
@@ -78,7 +90,11 @@
     "reorderPoint": "Aho wakongera gutumiza",
     "reorderSuggestions": "Ibyiyumviro byo kongera gutumiza",
     "lowStockItems": "Ibicuruzwa bike",
-    "outOfStock": "Nta gicuruzwa"
+    "outOfStock": "Nta gicuruzwa",
+    "description": "Ibisobanuro",
+    "cost": "Amafaranga",
+    "minStock": "Ubwinshi buke",
+    "productAdded": "Igicuruzwa cyongeweho neza"
   },
   "customers": {
     "title": "Abakiriya",
@@ -92,7 +108,8 @@
     "totalSpent": "Amafaranga yakoresheje",
     "lastOrder": "Icyifuzo cya nyuma",
     "customerHealth": "Ubuzima bw'umukiriya",
-    "healthScore": "Amanota y'ubuzima"
+    "healthScore": "Amanota y'ubuzima",
+    "customerAdded": "Umukiriya wongeweho neza"
   },
   "suppliers": {
     "title": "Abatanga",
@@ -104,7 +121,8 @@
     "phone": "Telefone",
     "address": "Aderesi",
     "productsSupplied": "Ibicuruzwa byatanzwe",
-    "totalPurchases": "Ibicuruzwa byaguze"
+    "totalPurchases": "Ibicuruzwa byaguze",
+    "supplierAdded": "Uwatanze wongeweho neza"
   },
   "accounting": {
     "title": "Imibare",
@@ -118,7 +136,14 @@
     "payment": "Kwishyura",
     "paymentMethod": "Uburyo bwo kwishyura",
     "amount": "Umubare",
-    "transactionDate": "Itariki y'igikorwa"
+    "transactionDate": "Itariki y'igikorwa",
+    "addTransaction": "Kongeramo igikorwa",
+    "type": "Ubwoko",
+    "income": "Amafaranga yinjiye",
+    "expense": "Amafaranga yasohoka",
+    "category": "Icyiciro",
+    "description": "Ibisobanuro",
+    "transactionAdded": "Igikorwa cyongeweho neza"
   },
   "hr": {
     "title": "Abakozi",
@@ -132,7 +157,14 @@
     "hireDate": "Itariki yakozwe",
     "status": "Imiterere",
     "active": "Ukora",
-    "inactive": "Utakora"
+    "inactive": "Utakora",
+    "firstName": "Izina ry'ibanze",
+    "lastName": "Izina ryanyuma",
+    "email": "Imeri",
+    "phone": "Telefone",
+    "onLeave": "Mu nshuti",
+    "terminated": "Yahagaritswe",
+    "employeeAdded": "Umukozi wongeweho neza"
   },
   "auth": {
     "login": "Kwinjira",

@@ -140,7 +140,20 @@ export default function AccountingPage() {
                     <FormItem>
                       <FormLabel>{t('transactionDate')}</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input 
+                          type="date" 
+                          value={
+                            field.value 
+                              ? typeof field.value === 'string' 
+                                ? field.value 
+                                : new Date(field.value).toISOString().split('T')[0]
+                              : ''
+                          }
+                          onChange={(e) => field.onChange(e.target.value || undefined)}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

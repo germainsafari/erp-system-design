@@ -22,7 +22,10 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "submit": "Submit"
+    "submit": "Submit",
+    "success": "Success",
+    "error": "Error",
+    "somethingWentWrong": "Something went wrong"
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -63,7 +66,16 @@
     "processing": "Processing",
     "completed": "Completed",
     "cancelled": "Cancelled",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "items": "Items",
+    "addItem": "Add Item",
+    "selectCustomer": "Select a customer",
+    "product": "Product",
+    "selectProduct": "Select product",
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "notes": "Notes",
+    "orderCreated": "Order created successfully"
   },
   "inventory": {
     "title": "Inventory",
@@ -78,7 +90,11 @@
     "reorderPoint": "Reorder Point",
     "reorderSuggestions": "Reorder Suggestions",
     "lowStockItems": "Low Stock Items",
-    "outOfStock": "Out of Stock"
+    "outOfStock": "Out of Stock",
+    "description": "Description",
+    "cost": "Cost",
+    "minStock": "Min Stock",
+    "productAdded": "Product added successfully"
   },
   "customers": {
     "title": "Customers",
@@ -92,7 +108,8 @@
     "totalSpent": "Total Spent",
     "lastOrder": "Last Order",
     "customerHealth": "Customer Health",
-    "healthScore": "Health Score"
+    "healthScore": "Health Score",
+    "customerAdded": "Customer added successfully"
   },
   "suppliers": {
     "title": "Suppliers",
@@ -104,7 +121,8 @@
     "phone": "Phone",
     "address": "Address",
     "productsSupplied": "Products Supplied",
-    "totalPurchases": "Total Purchases"
+    "totalPurchases": "Total Purchases",
+    "supplierAdded": "Supplier added successfully"
   },
   "accounting": {
     "title": "Accounting",
@@ -118,7 +136,14 @@
     "payment": "Payment",
     "paymentMethod": "Payment Method",
     "amount": "Amount",
-    "transactionDate": "Transaction Date"
+    "transactionDate": "Transaction Date",
+    "addTransaction": "Add Transaction",
+    "type": "Type",
+    "income": "Income",
+    "expense": "Expense",
+    "category": "Category",
+    "description": "Description",
+    "transactionAdded": "Transaction added successfully"
   },
   "hr": {
     "title": "Human Resources",
@@ -132,7 +157,14 @@
     "hireDate": "Hire Date",
     "status": "Status",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "onLeave": "On Leave",
+    "terminated": "Terminated",
+    "employeeAdded": "Employee added successfully"
   },
   "auth": {
     "login": "Login",

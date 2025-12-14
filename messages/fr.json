@@ -22,7 +22,10 @@
     "back": "Retour",
     "next": "Suivant",
     "previous": "Précédent",
-    "submit": "Soumettre"
+    "submit": "Soumettre",
+    "success": "Succès",
+    "error": "Erreur",
+    "somethingWentWrong": "Quelque chose s'est mal passé"
   },
   "navigation": {
     "dashboard": "Tableau de bord",
@@ -63,7 +66,16 @@
     "processing": "En cours",
     "completed": "Terminée",
     "cancelled": "Annulée",
-    "viewDetails": "Voir les détails"
+    "viewDetails": "Voir les détails",
+    "items": "Articles",
+    "addItem": "Ajouter un article",
+    "selectCustomer": "Sélectionner un client",
+    "product": "Produit",
+    "selectProduct": "Sélectionner un produit",
+    "quantity": "Quantité",
+    "unitPrice": "Prix unitaire",
+    "notes": "Notes",
+    "orderCreated": "Commande créée avec succès"
   },
   "inventory": {
     "title": "Inventaire",
@@ -78,7 +90,11 @@
     "reorderPoint": "Point de réapprovisionnement",
     "reorderSuggestions": "Suggestions de réapprovisionnement",
     "lowStockItems": "Articles en stock faible",
-    "outOfStock": "Rupture de stock"
+    "outOfStock": "Rupture de stock",
+    "description": "Description",
+    "cost": "Coût",
+    "minStock": "Stock minimum",
+    "productAdded": "Produit ajouté avec succès"
   },
   "customers": {
     "title": "Clients",
@@ -92,7 +108,8 @@
     "totalSpent": "Total dépensé",
     "lastOrder": "Dernière commande",
     "customerHealth": "Santé du client",
-    "healthScore": "Score de santé"
+    "healthScore": "Score de santé",
+    "customerAdded": "Client ajouté avec succès"
   },
   "suppliers": {
     "title": "Fournisseurs",
@@ -104,7 +121,8 @@
     "phone": "Téléphone",
     "address": "Adresse",
     "productsSupplied": "Produits fournis",
-    "totalPurchases": "Achats totaux"
+    "totalPurchases": "Achats totaux",
+    "supplierAdded": "Fournisseur ajouté avec succès"
   },
   "accounting": {
     "title": "Comptabilité",
@@ -118,7 +136,14 @@
     "payment": "Paiement",
     "paymentMethod": "Mode de paiement",
     "amount": "Montant",
-    "transactionDate": "Date de transaction"
+    "transactionDate": "Date de transaction",
+    "addTransaction": "Ajouter une transaction",
+    "type": "Type",
+    "income": "Revenu",
+    "expense": "Dépense",
+    "category": "Catégorie",
+    "description": "Description",
+    "transactionAdded": "Transaction ajoutée avec succès"
   },
   "hr": {
     "title": "Ressources Humaines",
@@ -132,7 +157,14 @@
     "hireDate": "Date d'embauche",
     "status": "Statut",
     "active": "Actif",
-    "inactive": "Inactif"
+    "inactive": "Inactif",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "onLeave": "En congé",
+    "terminated": "Licencié",
+    "employeeAdded": "Employé ajouté avec succès"
   },
   "auth": {
     "login": "Connexion",
