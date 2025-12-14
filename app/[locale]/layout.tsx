@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server'
 import { Analytics } from "@vercel/analytics/next"
 import { AuthProvider } from "@/lib/auth"
 import { Toaster } from "@/components/ui/sonner"
+import { ThemeProvider } from "@/components/theme-provider"
 import { notFound } from 'next/navigation'
 import { locales, defaultLocale } from '@/i18n/config'
 import "../globals.css"
@@ -68,12 +69,14 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`font-sans antialiased`} suppressHydrationWarning>
-        <NextIntlClientProvider messages={messages}>
-          <AuthProvider>
-            {children}
-            <Toaster />
-          </AuthProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <NextIntlClientProvider messages={messages}>
+            <AuthProvider>
+              {children}
+              <Toaster />
+            </AuthProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
